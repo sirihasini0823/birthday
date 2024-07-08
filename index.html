@@ -111,6 +111,25 @@
         var foot = tree.footer;
         var hold = 1;
 
+	    wrap.click(function(e) {
+            playAudio();
+            console.log("Helloworld!");
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0; 
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function(e){
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
         canvas.click(function(e) {
             playAudio();
             console.log("Helloworld!");
